@@ -1,10 +1,13 @@
 
 
-const  express =  require('express');
 
+
+const  express =  require('express');
+const  cors   =   require('cors');
 const   bcrypt  =  require("bcrypt");
 const  mongoose  =  require('mongoose');
 const   jwt   =  require('jsonwebtoken');
+
 
 
 
@@ -23,13 +26,46 @@ const  userSchema  =  mongoose.Schema({
     email: {
         type:  "string"
     }
-})
+} , {timestamps:true});
+
+const   productSchemas  =  ({
+
+    brand: {
+        type: "string"
+    },
+    model:{
+        type:  "string"
+    },
+    color:{
+        type: "string"
+    }
+    ,
+    size: {
+        type: ['string']
+    }
+    ,
+    rating:{
+        type:  Number
+    },
+    image: {
+        type:  "string"
+    },
+    availability:  {
+        type:  "string"
+    }
+
+},{timestamps: true});
+
+const   productModel  =  mongoose.model("track"  , productSchemas)
 
 
 const   userModel  = mongoose.model("users" , userSchema)
 
 //creating  an  app  object
 const  app  =  express();
+
+//crosss  oringin   resource    sharing
+app.use(cors());
 
 
 //extracting  data  chunk  by  chunk
@@ -67,9 +103,6 @@ app.post("/nutrify/register"  ,  (  req  ,  res)=>{
                         console.log(err)
                     })
 
-
-
-
                 }   else  {
                     console.log(  err)
                 }
@@ -80,14 +113,12 @@ app.post("/nutrify/register"  ,  (  req  ,  res)=>{
         }
     })
 
-
 });
 
 //login  endpoint  
 app.post("/nutrify/login" ,  (  req  ,  res )=>{
 
     let  userCred  =  req.body;
-
 
     userModel.findOne({email: userCred.email})
     .then((user)=>{
@@ -121,7 +152,6 @@ app.post("/nutrify/login" ,  (  req  ,  res )=>{
 
                        } 
 
-                   
 
                 }   else  {
                     console.log( err)
@@ -144,25 +174,26 @@ app.post("/nutrify/login" ,  (  req  ,  res )=>{
     })
 
 
-
 });
-
 
 //  middle  ware   functionn  for   authentiocation  
 function midlleAuthenticate  (  req  ,  res ,  next)  
 {
 
-    console.log(  "  request  headers")
-    console.log(req.headers)
-    console.log(  req.headers.authorization)
-    let   token  =  req.headers.authorization.split("")[1]
+  
+ 
+   
+    let   token  =  req.headers.authorization.split(" ")[1]
+    console.log(`   this  is  my  ${token}`)
+
+     console.log(  "  to0ken   authenticated")
 
     jwt.verify(  token , "secretkey" , (  err  , dataPass)=>{
         if (!err)  {
 
-            res.send({
-                message:  "   am  an   authenticated   endpoint  "
-            })
+            console.log(  "token  has   been  verified")
+
+            next()
 
         }   else  {
             console.log  (  err)
@@ -176,11 +207,37 @@ function midlleAuthenticate  (  req  ,  res ,  next)
 //  protected   endpoints
 
 app.get("/nutrify/track"  , midlleAuthenticate ,    (   req  ,  res )=>{
+
        console.log(   "  protected   endpoint   working ");
+
+       res.status(200).send  ({
+        message:   "track    enpoint   workingg  ",
+        status:(200),
+        endpopint: ("/nutrify/track")
+       })
 
      
 });
 
+
+app.get(  "/nutrify/put"   ,  midlleAuthenticate  ,  (  req  ,  res  )=>{
+
+
+    res.send({
+    
+    })
+
+    res.redirect("https://dev.to/sasandehghanian/create-read-update-delete-data-by-using-mongoose-nodejs-53l7")
+
+    console.log(  "put  is   working")
+
+
+
+
+})
+
+//endpoint  to   update    a  product  in t he  database
+app.
 
 
 
