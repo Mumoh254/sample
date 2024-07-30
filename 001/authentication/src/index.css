@@ -1,0 +1,182 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "poppins";
+}
+
+body{
+  background: #fff;
+}
+
+:root{
+  --padding-size:  1%   6%;
+  --font-family:  "poppins";
+  --font-size: 1.3rem;
+  --font-weighty:  600;
+  --font-weight:   400p;
+  --color: #333;
+  --border-radius: 6px;
+
+
+}
+
+.header{
+  max-width: 100%;
+  max-height: fit-content;
+  padding: 1px    20px ;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:#231b1f21;
+  box-shadow: 0px  1px  #25222248 ;
+}
+
+.logo{
+
+  padding: 5px   20px;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.logo  p  {
+  font-size:  1.4rem;
+}
+
+.logo p span  {
+  color: red;
+  font-weight: 400;
+}
+
+.navigation {
+
+  width: 50%;
+  
+}
+
+.nav-links{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+}
+
+.nav-link{
+  list-style-type: none;
+  font-size: 1.5rem;
+
+
+}
+
+
+ .nav-link a::after{
+  position: absolute;
+  content: "";
+  width: 8%;
+  height: 2px;
+  background: #ff0e0e;
+  top: 30px;
+  bottom: 0;
+  left: 0;
+
+}
+.nav-link  a  {
+  text-decoration: none;
+  color: #333;
+}
+
+.serch{
+  padding: 6px  5px;
+  border-radius: 16px;
+  border: none;
+  text-indent: 10px;
+  width: 250px;
+  font-weight: 700;
+  font-family: "poppins";
+  outline: none;
+}
+.form  {
+  background: #152936;
+}
+.register  {
+
+   min-height: 500px;
+   display: flex;
+   justify-content: center;
+   align-items: start;
+   background: #193db3;
+   column-gap:   20px;
+}
+
+
+
+.inp-fields{
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-self: start;
+
+ 
+ 
+}
+
+.inp-fields  input  {
+  width: 700px;
+  margin-right: 20px;
+  margin-top: 10px;
+  padding: 12px   20px;
+  border: none;
+  border-radius: 10px;
+  text-indent: 20px;
+  counter-reset: #333;
+  cursor: pointer;
+  outline: none;
+}
+
+.inp  {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+
+.sub {
+
+   width: 10%;
+   padding: 3px   0px;
+
+   font-size:   22px ;
+
+}
+
+.btns  {
+
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+
+
+}
+
+label  {
+  color: #fff;
+  font-weight: 400;
+  margin-left: 3px;
+}
+
+.header  {
+
+  padding: 10px   20px;
+  text-align: center;
+  display: flex;
+
+  align-items: center;
+  font-size: 3rem;
+  color: #fff;
+}
